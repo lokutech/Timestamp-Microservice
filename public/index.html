@@ -17,7 +17,7 @@
   </div>
   <h1 class='text-center'>Welcome to the Timestamp Microservice</h1>
   <ol class='mt mt-4'>
-    <li>The API endpoint is <code>GET [project_url]/api/timestamp/:date_string?</code></li>
+    <li>The API endpoint is <code>GET <span id="project_url">[project_url]</span>/api/timestamp/:date_string?</code></li>
     <li>A date string is valid if can be successfully parsed by <code>new Date(date_string)</code>.
       Note that the unix timestamp needs to be an integer (not a string) specifying milliseconds.
       In our test we will use date strings compliant with ISO-8601 (e.g. "<code>2016-11-20</code>") because this will ensure an UTC timestamp</li>
@@ -30,13 +30,18 @@
   </ol>
   <h3 class="text-center">Example usage</h3>
   <p class="text-center">
-    <a href="/api/timestamp/2015-12-25">[projectUrl]/api/timestamp/2015-12-25</a>
+    <a id= 'link1' href="/api/timestamp/2015-12-25">[projectUrl]/api/timestamp/2015-12-25</a>
   </p>
   <p class="text-center">
-    <a href="/api/timestamp/1451001600000">[projectUrl]/api/timestamp/1451001600000</a>
+    <a id= 'link2' href="/api/timestamp/1451001600000">[projectUrl]/api/timestamp/1451001600000</a>
   </p>
   <p></p>
   <h3 class="text-center mt-4">Example Output</h3>
   <p class="text-center">{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}</p>
+  <script>
+    document.getElementById('project_url').innerHTML = window.location.hostname
+    document.getElementById('link1').innerHTML = window.location.hostname + '/api/timestamp/2015-12-25'
+    document.getElementById('link2').innerHTML = window.location.hostname + '/api/timestamp/1451001600000'
+  </script>
 </body>
 </html>
