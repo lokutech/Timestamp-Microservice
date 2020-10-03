@@ -2,27 +2,12 @@ const express = require('express')
 const app = express()
 const path = require('path')
 
-// app.use(express.json())
-
 // Static folder
 app.use(express.static(path.join(__dirname, 'public')))
 
-// Request Time middleware
-var requestTime = function (req, res, next) {
-  let date = new Date()
-  req.requestTime = 
-    {
-    'unix': date.getTime(),
-    'utc': date.toUTCString(),
-  }
-  next()
-}
-app.use(requestTime)
-
 // Api date empty string
 app.get('/api/timestamp', (req, res) => {
-  // res.send(`${req.requestTime.unix}`)
-  res.send({ 'unix' : req.requestTime.unix, 'utc' : req.requestTime.utc})
+  res.json({ unix: Date.now(), utc: Date() });
 })
 
 // Api date string
